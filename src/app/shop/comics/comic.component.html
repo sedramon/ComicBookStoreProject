@@ -1,0 +1,95 @@
+<section
+  fxFlex
+  fxLayoutAlign = "center center"
+  fxLayout = "column"
+>
+<h1>$ SHOP $</h1>
+<mat-form-field class="search">
+      <input matInput type="text" (keyup)="doFilter($any($event.target).value)" placeholder="Search...">
+</mat-form-field>
+  <div class="mattable">
+      
+    <mat-table [dataSource]="shopSource" matSort>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let myRowData; columns: displayedColumns"></mat-row>
+
+      <!-- NAME -->
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >Name</mat-header-cell
+        >
+        <mat-cell *matCellDef="let element">{{ element.name }}</mat-cell>
+      </ng-container>
+      <!-- GENRE -->
+      <ng-container matColumnDef="genre">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >Genre</mat-header-cell
+        >
+        <mat-cell *matCellDef="let element">{{ element.genre }}</mat-cell>
+      </ng-container>
+      <!-- PAGES -->
+      <ng-container matColumnDef="pages">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >Pages</mat-header-cell
+        >
+        <mat-cell *matCellDef="let element">{{ element.pages }}</mat-cell>
+      </ng-container>
+      <!-- AUTHOR -->
+      <ng-container matColumnDef="author">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >Author</mat-header-cell
+        >
+        <mat-cell *matCellDef="let element">{{ element.author }}</mat-cell>
+      </ng-container>
+      <!-- DATE -->
+      <ng-container matColumnDef="dateOfRelease">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >Date Of Release</mat-header-cell
+        >
+        <mat-cell *matCellDef="let element">{{
+          element.dateOfRelease | date
+        }}</mat-cell>
+      </ng-container>
+      <!-- PRICE -->
+      <ng-container matColumnDef="price">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >Price</mat-header-cell
+        >
+        <mat-cell *matCellDef="let element">{{ element.price }} $</mat-cell>
+      </ng-container>
+      <!-- REVIEW -->
+      <ng-container matColumnDef="review">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >Review</mat-header-cell
+        >
+        <mat-cell *matCellDef="let element"
+          >{{ this.reviewService.calculateGradeForBook(element.id) | number}} / 5
+          <button mat-raised-button (click)="leaveAReview(element)">
+            <mat-icon>star</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+      <!-- ADDTOCART -->
+      <ng-container matColumnDef="addToCart">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          ><mat-icon>shopping_cart</mat-icon></mat-header-cell
+        >
+        <mat-cell *matCellDef="let element">
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="addToCart(element)"
+          >
+            +
+          </button></mat-cell
+        >
+      </ng-container>
+    </mat-table>
+    <mat-paginator
+      [length]="shopSource.data.length"
+      [pageSize]="5"
+      [pageSizeOptions]="[1, 2, 5, 10]"
+    >
+    </mat-paginator>
+  </div>
+</section>

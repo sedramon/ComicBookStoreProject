@@ -1,0 +1,93 @@
+<section class="signup" fxLayoutAlign="center center">
+  <form
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    fxLayoutGap="10px"
+    #f="ngForm"
+    (ngSubmit)="onSubmit(f)"
+  >
+    <h1>SIGN UP</h1>
+    <!-- USERNAME -->
+    <mat-form-field>
+      <input
+        type="username"
+        matInput
+        username
+        ngModel
+        name="username"
+        placeholder="Your username..."
+        required
+        username
+        #usernameInput="ngModel"
+      />
+      <mat-error *ngIf="usernameInput.hasError('required')"
+        >Field should not be empty</mat-error
+      >
+    </mat-form-field>
+
+    <!-- EMAIL -->
+    <mat-form-field>
+      <input
+        type="email"
+        matInput
+        email
+        ngModel
+        name="email"
+        placeholder="Your email..."
+        required
+        email
+        #emailInput="ngModel"
+      />
+      <mat-error *ngIf="emailInput.hasError('required')"
+        >Field should not be empty</mat-error
+      >
+      <mat-error *ngIf="!emailInput.hasError('required')"
+        >Please use correct email format</mat-error
+      >
+    </mat-form-field>
+
+    <!-- PASSWORD -->
+    <mat-form-field hintLabel="Please enter a minimum of 8 characters">
+      <input
+        type="password"
+        matInput
+        password
+        ngModel
+        name="password"
+        placeholder="Your password..."
+        minlength="8"
+        required
+        #passwordInput="ngModel"
+        password
+      />
+      <mat-hint align="end">{{ passwordInput.value?.length }} / 8</mat-hint>
+    </mat-form-field>
+
+    <!-- DATE -->
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Your date of birth..."
+        [matDatepicker]="picker"
+        ngModel
+        required
+        name="dateOfBirth"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"> </mat-datepicker-toggle>
+      <mat-datepicker mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <!-- PRIKAZ GRESKE U SLUCAJU DA POSTOJI GRESKA-->
+    <mat-label *ngIf="errorExists"> {{ errorText }}</mat-label>
+
+    <!-- CHECKBOX -->
+    <mat-checkbox required ngModel name="acceptance">
+      I accept the terms of condition
+    </mat-checkbox>
+
+    <!-- BUTTON -->
+    <button type="submit" mat-raised-button [disabled]="f.invalid">
+      Sign up
+    </button>
+  </form>
+</section>

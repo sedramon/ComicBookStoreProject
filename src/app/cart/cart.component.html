@@ -1,0 +1,81 @@
+<section fxLayout="column" fxLayoutAlign="space-around center">
+  <h1 *ngIf="!listIsEmpty()">
+    <mat-icon>shopping_cart</mat-icon>
+    CART
+    <mat-icon>shopping_cart</mat-icon>
+  </h1>
+  <div *ngIf="!listIsEmpty()">
+    <mat-form-field class="search">
+      <input matInput type="text" (keyup)="doFilter($any($event.target).value)" placeholder="Search...">
+    </mat-form-field>
+  </div>
+  <div class="mat-elevation-z8 data-table" *ngIf="!listIsEmpty()">
+    <mat-table [dataSource]="cartSource" matSort>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let myRowData; columns: displayedColumns"></mat-row>
+      <mat-footer-row
+        class="sticky-footer"
+        *matFooterRowDef="displayedColumns"
+      ></mat-footer-row>
+
+      <!-- NAME -->
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >Name</mat-header-cell
+        >
+        <mat-cell *matCellDef="let element">{{ element.name }}</mat-cell>
+        <mat-footer-cell *matFooterCellDef></mat-footer-cell>
+      </ng-container>
+      <!-- GENRE -->
+      <ng-container matColumnDef="genre">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >Genre</mat-header-cell
+        >
+        <mat-cell *matCellDef="let element">{{ element.genre }}</mat-cell>
+        <mat-footer-cell *matFooterCellDef>
+          Total price : {{ calculateTotal() }} $
+        </mat-footer-cell>
+      </ng-container>
+      <!-- AUTHOR -->
+      <ng-container matColumnDef="author">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >Author</mat-header-cell
+        >
+        <mat-cell *matCellDef="let element">{{ element.author }}</mat-cell>
+        <mat-footer-cell *matFooterCellDef>
+          <button mat-raised-button>CHECKOUT</button>
+        </mat-footer-cell>
+      </ng-container>
+      <!-- PRICE -->
+      <ng-container matColumnDef="price">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >Price</mat-header-cell
+        >
+        <mat-cell *matCellDef="let element">{{ element.price }} $</mat-cell>
+        <mat-footer-cell *matFooterCellDef></mat-footer-cell>
+      </ng-container>
+      <!-- REMOVEFROMCART -->
+      <ng-container matColumnDef="removeFromCart">
+        <mat-header-cell *matHeaderCellDef>Remove From Cart</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button
+            mat-raised-button
+            (click)="removeFromCart(element)"
+          >
+            <mat-icon>
+              close
+            </mat-icon>
+          </button></mat-cell
+        >
+        <mat-footer-cell *matFooterCellDef></mat-footer-cell>
+      </ng-container>
+    </mat-table>
+    <mat-paginator
+        [length]="cartSource.data.length"
+        [pageSize]="5"
+        [pageSizeOptions]="[1, 2, 5, 10]"
+      >
+      </mat-paginator>
+  </div>
+  <h1 *ngIf="listIsEmpty()">! YOUR CART IS EMPTY !</h1>
+</section>

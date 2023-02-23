@@ -1,0 +1,75 @@
+.login {
+  width: 100%;
+  height: 90vh;
+  background-image: url(../../../assets/images/pexels-erik-mclean-7524996.jpg);
+  background-size: cover;
+}
+
+form {
+  background-color: black;
+}
+
+@media screen and (min-width: 600px) {
+  form {
+    border: 4px white solid;
+    height: 600px;
+    width: 600px;
+    border-radius: 50px;
+  }
+  mat-form-field {
+    width: 400px;
+  }
+  button {
+    height: 50px;
+    width: 100px;
+    font-size: 18px;
+    background-color: red;
+  }
+  mat-hint {
+    font-size: 15px;
+  }
+
+  a {
+    margin-top: 20px;
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  h1 {
+    font-size: 50px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  form {
+    width: 350px;
+    height: 550px;
+    border: 4px white solid;
+    border-radius: 50px;
+  }
+  mat-form-field {
+    width: 300px;
+  }
+  mat-form-field,
+  input,
+  input::placeholder {
+    font-size: 16px;
+  }
+  mat-checkbox {
+    font-size: 16px;
+  }
+  button {
+    height: 50px;
+    width: 100px;
+    font-size: 18px;
+    background-color: red;
+  }
+  a {
+    margin-top: 20px;
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+  }
+}

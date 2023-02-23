@@ -1,0 +1,71 @@
+@media screen and (min-width: 600px) {
+  .mdc-data-table__table {
+    width: 1000px;
+    border: 2px white solid;
+  }
+  .mat-cell,
+  .mat-header-cell,
+  .mat-footer-cell {
+    text-align: center;
+    justify-content: center;
+    font-size: 15px;
+    height: 60px;
+    background-color: black;
+    color: white;
+  }
+  button {
+    background-color: red;
+  }
+  .mat-column-removeFromCart > button {
+    background-color: red;
+    margin-left: 15px;
+  }
+}
+
+mat-table {
+  width: 75%;
+  border: 2px white solid;
+}
+
+@media screen and (max-width: 600px) {
+  .mat-cell,
+  .mat-header-cell,
+  .mat-footer-cell {
+    text-align: center;
+    justify-content: center;
+    font-size: 12px;
+    height: 75px;
+    background-color: black;
+    color: white;
+  }
+  button {
+    background-color: red;
+  }
+  .mat-column-removeFromCart > button {
+    margin-left: -15px;
+    background-color: red;
+  }
+}
+
+section {
+  height: 90vh;
+  background-image: url(../../assets/images/pexels-pratikxox-4025825.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+h1 {
+  color: red;
+  margin-top: 25px;
+  border: 5px black solid;
+  border-radius: 50px;
+  padding: 25px;
+}
+
+h1 > mat-icon {
+  font-size: 40px;
+  width: 50px;
+  height: 40px;
+  justify-content: center;
+  text-align: center;
+}

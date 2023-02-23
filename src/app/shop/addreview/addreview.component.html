@@ -1,0 +1,30 @@
+<section>
+  <h1 mat-dialog-title>{{ data.name }}</h1>
+  <div mat-dialog-content>
+    <p>Leave a review from 1 to 5...</p>
+    <form
+      fxLayout="column"
+      fxLayoutGap="2vh"
+      #reviewForm="ngForm"
+      (ngSubmit)="finishReviewing(reviewForm)"
+    >
+      <mat-form-field>
+        <mat-label>1 to 5</mat-label>
+        <input
+          matInput
+          type="number"
+          placeholder="1..5"
+          ngModel
+          name="grade"
+          grade
+          required
+          #gradeInput="ngModel"
+        />
+      </mat-form-field>
+      <div mat-dialog-actions>
+        <button mat-raised-button type="submit" [mat-dialog-close]="true">Submit</button>
+        <button mat-raised-button [mat-dialog-close]="false">Cancel</button>
+      </div>
+    </form>
+  </div>
+</section>

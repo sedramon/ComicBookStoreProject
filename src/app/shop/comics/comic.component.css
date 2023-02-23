@@ -1,0 +1,64 @@
+section {
+  background-image: url(../../../assets/images/pexels-erik-mclean-6654177.jpg);
+  background-size: cover;
+  height: 90vh;
+}
+
+h1 {
+  color: red;
+  margin-top: 25px;
+  border: 5px black solid;
+  border-radius: 50px;
+  padding: 25px;
+}
+
+.search {
+  width: 25%;
+}
+
+.mattable {
+  width: 75%;
+  border: 2px white solid;
+}
+
+
+@media screen and (min-width: 600px) {
+  .mat-cell,
+  .mat-header-cell {
+    text-align: center;
+    justify-content: center;
+    font-size: 15px;
+    height: 60px;
+    background-color: black;
+    color: white;
+  }
+  .mat-column-addToCart > button {
+    background-color: red;
+    margin-left: -15px;
+  }
+
+  .mat-column-review > button {
+    background-color: red;
+    margin: 15px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .mat-cell,
+  .mat-header-cell {
+    text-align: center;
+    justify-content: center;
+    font-size: 12px;
+    height: 75px;
+    background-color: black;
+    color: white;
+  }
+  .mat-column-addToCart > button {
+    background-color: red;
+    margin-left: 15px;
+  }
+  .mat-column-review > button {
+    background-color: red;
+    margin: 15px;
+  }
+}
