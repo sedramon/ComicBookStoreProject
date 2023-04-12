@@ -117,4 +117,9 @@ export class UserService {
   setIsUserLoggedIn(status: boolean) {
     this.isUserLoggedIn = status;
   }
+
+  setCurrentUser(user : User) {
+    this.currentUser = user;
+  }
+
 }

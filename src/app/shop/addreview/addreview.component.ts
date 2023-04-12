@@ -36,7 +36,9 @@ export class AddreviewComponent {
 
   finishReviewing(form: NgForm) : Review{
     this.reviewForInput.grade = form.value.grade;
+    this.reviewForInput.userId = this.userService.getCurrentUserId();
     this.reviewService.addReviewToList(this.reviewForInput);
+    console.log(this.userService.getCurrentUserId());
     console.log(this.reviewForInput)
     return this.reviewForInput;
   }

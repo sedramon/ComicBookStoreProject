@@ -4,7 +4,7 @@
   fxLayout = "column"
 >
 <h1>$ SHOP $</h1>
-<mat-form-field class="search">
+<mat-form-field class="search" color="warn">
       <input matInput type="text" (keyup)="doFilter($any($event.target).value)" placeholder="Search...">
 </mat-form-field>
   <div class="mattable">
@@ -57,17 +57,13 @@
         >
         <mat-cell *matCellDef="let element">{{ element.price }} $</mat-cell>
       </ng-container>
-      <!-- REVIEW -->
+      REVIEW
       <ng-container matColumnDef="review">
         <mat-header-cell *matHeaderCellDef mat-sort-header
           >Review</mat-header-cell
         >
         <mat-cell *matCellDef="let element"
-          >{{ this.reviewService.calculateGradeForBook(element.id) | number}} / 5
-          <button mat-raised-button (click)="leaveAReview(element)">
-            <mat-icon>star</mat-icon>
-          </button>
-        </mat-cell>
+          >{{ this.reviewService.calculateGradeForBook(element.id) | number}} / 5</mat-cell>
       </ng-container>
       <!-- ADDTOCART -->
       <ng-container matColumnDef="addToCart">

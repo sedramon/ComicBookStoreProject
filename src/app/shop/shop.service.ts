@@ -6,6 +6,7 @@ export interface Comic {
   author: string;
   dateOfRelease: Date;
   price: number;
+  amount: number;
   status?: string;
 }
 
@@ -18,6 +19,7 @@ export class ShopService {
       pages: 120,
       author: 'Stan Lee',
       dateOfRelease: new Date('2023-01-03 21:00'),
+      amount: 1,
       price: 49.99,
     },
     {
@@ -27,6 +29,7 @@ export class ShopService {
       pages: 66,
       author: 'Stan Lee',
       dateOfRelease: new Date('2023-01-02 20:00'),
+      amount: 1,
       price: 24.99,
     },
     {
@@ -36,6 +39,7 @@ export class ShopService {
       pages: 200,
       author: 'Roy Thomas',
       dateOfRelease: new Date('2023-01-01 11:00'),
+      amount: 1,
       price: 64.99,
     },
     {
@@ -45,6 +49,7 @@ export class ShopService {
       pages: 205,
       author: 'Roy Thomas',
       dateOfRelease: new Date('2022-11-22 13:00'),
+      amount: 1,
       price: 49.99,
     },
     {
@@ -54,6 +59,7 @@ export class ShopService {
       pages: 178,
       author: 'Jack Kirby',
       dateOfRelease: new Date('2021-01-01 00:00'),
+      amount: 1,
       price: 29.99,
     },
     {
@@ -63,6 +69,7 @@ export class ShopService {
       pages: 75,
       author: 'Stan Lee',
       dateOfRelease: new Date('2020-08-03 16:00'),
+      amount: 1,
       price: 79.99,
     },
     {
@@ -72,6 +79,7 @@ export class ShopService {
       pages: 222,
       author: 'Jack Kirby',
       dateOfRelease: new Date('2020-08-03 16:00'),
+      amount: 1,
       price: 19.99,
     },
     {
@@ -81,6 +89,7 @@ export class ShopService {
       pages: 98,
       author: 'Steve Ditco',
       dateOfRelease: new Date('2022-11-23 16:00'),
+      amount: 1,
       price: 99.99,
     },
     {
@@ -90,6 +99,7 @@ export class ShopService {
       pages: 112,
       author: 'Douglas Volk',
       dateOfRelease: new Date('2019-01-01 00:00'),
+      amount: 1,
       price: 39.99,
     },
     {
@@ -99,6 +109,7 @@ export class ShopService {
       pages: 256,
       author: 'Stan Lee',
       dateOfRelease: new Date('2010-11-22 15:00'),
+      amount: 1,
       price: 59.99,
     },
   ];

@@ -51,6 +51,10 @@
         <a routerLink="/"><img src="../assets/images/logo-nav@2x.png" /></a>
       </div>
       <div fxFlex fxLayoutAlign="end" fxLayoutGap="30px" fxHide.xs>
+        
+        <button *ngIf="this.userService.getIsUserLoggedIn()" mat-raised-button color="warn" (click)="openProfile(this.userService.currentUser.id)">
+          {{ this.userService.currentUser.email }}
+        </button>
         <a routerLink="/" class="nav">HOME</a>
         <a routerLink="/comic" class="nav">SHOP</a>
         <a routerLink="/login" class="nav">LOGIN</a>

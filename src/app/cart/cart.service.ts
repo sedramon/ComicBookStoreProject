@@ -5,7 +5,7 @@ export class CartService {
 
   calculateSum(): number {
     var sum = 0;
-    this.cartList.map((comic) => (sum += comic.price));
+    this.cartList.map((comic) => (sum += comic.price * comic.amount));
     return sum;
   }
 
@@ -23,5 +23,9 @@ export class CartService {
         this.cartList.splice(i, 1);
       }
     }
+  }
+
+  emptyCart() {
+    this.cartList = [];
   }
 }

@@ -44,6 +44,6 @@ import { RemovefromcartComponent } from './cart/removefromcart/removefromcart.co
   ],
   providers: [UserService, ShopService, CartService, ReviewService],
   bootstrap: [AppComponent],
-  entryComponents: [AddreviewComponent]
+  entryComponents: [AddreviewComponent, ProfileComponent]
 })
 export class AppModule {}

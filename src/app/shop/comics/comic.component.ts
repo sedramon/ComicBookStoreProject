@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Route, Router } from '@angular/router';
 import { UserService } from 'src/app/auth/user.service';
 import { CartService } from 'src/app/cart/cart.service';
 import { AddreviewComponent } from '../addreview/addreview.component';
@@ -36,7 +37,8 @@ export class ComicComponent implements OnInit, AfterViewInit {
     private dialog: MatDialog,
     private cartService: CartService,
     private userService: UserService,
-    public reviewService: ReviewService
+    public reviewService: ReviewService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -48,7 +50,18 @@ export class ComicComponent implements OnInit, AfterViewInit {
     this.shopSource.paginator = this.paginator;
   }
 
+  setComicStatus(comic: Comic, status: string){
+    comic.status = status;
+    console.log(comic);
+  }
+
   addToCart(comic: Comic) {
+    this.setComicStatus(comic, 'IN PROGRESS')
+    console.log(this.userService.isUserLoggedIn)
+    if (this.userService.getIsUserLoggedIn() == false) {
+    this.router.navigate(['login']);
+    return
+    }
     console.log('added to cart ' + comic.name);
     const dialogRef = this.dialog.open(AddtocartComponent, {
       data: {
@@ -62,23 +75,6 @@ export class ComicComponent implements OnInit, AfterViewInit {
         return;
       }
     });
-  }
-
-  leaveAReview(comic: Comic) {
-    const dialogRef = this.dialog.open(AddreviewComponent,{width:'25%',height:'420px',
-    enterAnimationDuration:'1000ms',
-    exitAnimationDuration:'1000ms',
-  data:{
-    name: comic.name,
-    comicId: comic.id
-  }});
-  dialogRef.afterClosed().subscribe((result) => {
-    if(result) {
-      console.log(this.reviewService.getReviewList());
-    } else {
-      return;
-    }
-  });
   }
 
   doFilter(filterValue: string) {

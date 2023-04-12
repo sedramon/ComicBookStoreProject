@@ -1,8 +1,4 @@
 @media screen and (min-width: 600px) {
-  .mdc-data-table__table {
-    width: 1000px;
-    border: 2px white solid;
-  }
   .mat-cell,
   .mat-header-cell,
   .mat-footer-cell {
@@ -22,9 +18,20 @@
   }
 }
 
-mat-table {
-  width: 75%;
+.mattable {
+  width: 1500px;
   border: 2px white solid;
+  border-radius: 30px;
+  overflow: hidden !important;
+}
+
+.mat-column-amount > button {
+  background-color: red;
+  margin-left: 15px;
+}
+.mat-column-review > button {
+  background-color: red;
+  margin-left: 15px;
 }
 
 @media screen and (max-width: 600px) {
@@ -42,7 +49,7 @@ mat-table {
     background-color: red;
   }
   .mat-column-removeFromCart > button {
-    margin-left: -15px;
+    padding-left: 15px;
     background-color: red;
   }
 }

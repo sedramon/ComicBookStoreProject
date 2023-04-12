@@ -3,6 +3,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { UserService } from '../auth/user.service';
+import { AddreviewComponent } from '../shop/addreview/addreview.component';
+import { ReviewService } from '../shop/review.service';
 import { Comic } from '../shop/shop.service';
 import { CartService } from './cart.service';
 import { RemovefromcartComponent } from './removefromcart/removefromcart.component';
@@ -16,10 +19,23 @@ export class CartComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  displayedColumns = ['name', 'genre', 'author', 'price', 'removeFromCart'];
+  displayedColumns = [
+    'name',
+    'genre',
+    'author',
+    'price',
+    'amount',
+    'status',
+    'arrived',
+    'cancelled',
+    'review',
+    'removeFromCart',
+  ];
   cartSource = new MatTableDataSource<Comic>();
 
-  constructor(private cartService: CartService, private dialog: MatDialog) {}
+  constructor(private cartService: CartService, 
+    private dialog: MatDialog, 
+    public reviewService: ReviewService) {}
 
   ngOnInit(): void {
     this.cartSource.data = this.cartService.getCartList();
@@ -45,12 +61,12 @@ export class CartComponent implements OnInit, AfterViewInit {
   removeFromCart(comic: Comic) {
     console.log('removed ' + comic.name);
     const dialogRef = this.dialog.open(RemovefromcartComponent, {
-      data : {
-        name : comic.name
-      }
+      data: {
+        name: comic.name,
+      },
     });
     dialogRef.afterClosed().subscribe((result) => {
-      if(result) {
+      if (result) {
         this.cartService.removeFromCartList(comic);
         this.cartSource.data = this.cartService.getCartList();
       } else {
@@ -61,5 +77,33 @@ export class CartComponent implements OnInit, AfterViewInit {
 
   doFilter(filterValue: string) {
     this.cartSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  leaveAReview(comic: Comic) {
+    const dialogRef = this.dialog.open(AddreviewComponent, {
+      width: '25%',
+      height: '420px',
+      enterAnimationDuration: '1000ms',
+      exitAnimationDuration: '1000ms',
+      data: {
+        name: comic.name,
+        comicId: comic.id,
+      },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        console.log(this.reviewService.getReviewList());
+      } else {
+        return;
+      }
+    });
+  }
+
+  setComicStatus(comic: Comic, status: string) {
+    comic.status = status;
+  }
+
+  addAmount(comic: Comic) {
+    comic.amount++;
   }
 }
